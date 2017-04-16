@@ -1,5 +1,3 @@
-package com.company;
-
 /**
  * A pot has a potSize that player can add to through bets. The winning player is awarded the pot and it is reset.
  */

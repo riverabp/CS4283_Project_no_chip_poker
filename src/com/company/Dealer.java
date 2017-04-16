@@ -116,23 +116,23 @@ public class Dealer {
 
             //check quads
             else if(availableCards[0].getRank() == availableCards[1].getRank() &&
-                    availableCards[1].getRank() == availableCards[2].getRank() &&
-                    availableCards[2].getRank() == availableCards[3].getRank() ) {
+                    availableCards[0].getRank() == availableCards[2].getRank() &&
+                    availableCards[0].getRank() == availableCards[3].getRank() ) {
                 setHand(p, availableCards, Card.HankRank.FOUR_OF_A_KIND);
             }
 
             //check full house
-            if(availableCards[0] == availableCards[1] &&
+            else if(availableCards[0] == availableCards[1] &&
                     availableCards[1] == availableCards[2] &&
                     availableCards[3] == availableCards[4]){
                 setHand(p, availableCards, Card.HankRank.FULL_HOUSE);
             }
             //check flush
-            if(hasFlush(availableCards)){
+            else if(hasFlush(availableCards)){
                 setHand(p, availableCards, Card.HankRank.FLUSH);
             }
             //check straight
-            if(hasStraight(availableCards)){
+            else if(hasStraight(availableCards)){
                 setHand(p, availableCards, Card.HankRank.FLUSH);
             }
 
@@ -195,6 +195,7 @@ public class Dealer {
         int pairRank = 0;
         boolean hasTrips = false;
         boolean hasPair = false;
+        int movedCards = 0;
 
         for (int i = 0; i < cList.size();i++){
             int sameRankCards = 1;
@@ -205,22 +206,36 @@ public class Dealer {
                 } else {
                     break;
                 }
-                if(sameRankCards == 4){
-                    quadsRank = cList.get(i).getRank();
-                } else if (sameRankCards == 3){
-                    tripsRank = cList.get(i).getRank();
-                } else if (sameRankCards == 2){
-                    pairRank = cList.get(i).getRank();
-                }
-
+            }
+            if(sameRankCards == 4){
+                quadsRank = cList.get(i).getRank();
+                movedCards += 4;
+            } else if (sameRankCards == 3){
+                tripsRank = cList.get(i).getRank();
+                hasTrips = true;
+                movedCards += 3;
+            } else if (sameRankCards == 2){
+                pairRank = cList.get(i).getRank();
+                hasPair = true;
+                movedCards += 2;
             }
             if(sameRankCards > 1) {
-                for (int j = i; j < sameRankCards + i; j++) {
-                    cList.addFirst(cList.get(j));
-                    cList.remove(j + 1);
+                if(hasTrips) {
+                    for (int j = i; j < sameRankCards + i; j++) {
+                        cList.addFirst(cList.get(j));
+                        cList.remove(j + 1);
+                    }
                 }
             }
             i += sameRankCards - 1;
+        }
+
+        //sort high cards in descending order after groups
+        for(int i = cList.size() - 1; i >= movedCards; i--){
+            {
+                cList.addLast(cList.get(i));
+                cList.remove(i);
+            }
         }
         Card[] cReturn = new Card[c.length];
         return cList.toArray(cReturn);

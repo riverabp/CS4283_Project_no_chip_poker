@@ -90,6 +90,7 @@ public class Card implements Comparable<Card>{
      * Print card to the console e.g. "7c"
      */
     public void print(){
+        System.out.print("|");
         if(rank > 9){
             if(rank == 10){
                 System.out.print("T");
@@ -105,7 +106,7 @@ public class Card implements Comparable<Card>{
         } else {
             System.out.print(this.rank);
         }
-        System.out.print(suit + " ");
+        System.out.print(suit + "|");
     }
 
 }

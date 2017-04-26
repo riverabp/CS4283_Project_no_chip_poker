@@ -12,7 +12,7 @@ public class PokerGame {
     public PokerGame(){}
 
     public static void runGame() {
-        System.out.println("start.");
+        printBanner();
         System.out.println();
         Scanner scr = new Scanner(System.in);
 
@@ -53,5 +53,16 @@ public class PokerGame {
 
         System.out.println();
         System.out.println("done.");
+    }
+
+    private static void printBanner(){
+        System.out.print("*******************************************************************\n" +
+                "*  _____                    _   _       _     _ _                 *\n" +
+                "* |_   _|____  ____ _ ___  | | | | ___ | | __| ( ) ___ _ __ ___   *\n" +
+                "*   | |/ _ \\ \\/ / _` / __| | |_| |/ _ \\| |/ _` |/ / _ \\ '_ ` _ \\  *\n" +
+                "*   | |  __/>  < (_| \\__ \\ |  _  | (_) | | (_| | |  __/ | | | | | *\n" +
+                "*   |_|\\___/_/\\_\\__,_|___/ |_| |_|\\___/|_|\\__,_|  \\___|_| |_| |_| *\n" +
+                "*                                                                 *\n" +
+                "*******************************************************************\n\n");
     }
 }

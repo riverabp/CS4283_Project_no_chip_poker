@@ -109,7 +109,7 @@ public class Dealer {
 
             //Check straight flush
             if(hasStraightFlush(availableCards)){
-                setHand(p, availableCards, Card.HankRank.FLUSH);
+                setHand(p, availableCards, Card.HankRank.STRAIGHT_FLUSH);
             }
 
             //check quads
@@ -131,7 +131,7 @@ public class Dealer {
             }
             //check straight
             else if(hasStraight(availableCards)){
-                setHand(p, availableCards, Card.HankRank.FLUSH);
+                setHand(p, availableCards, Card.HankRank.STRAIGHT);
             }
 
             //check trips
@@ -166,7 +166,7 @@ public class Dealer {
     }
 
     /**
-     * Sub-method to assign n cards to a player's hand
+     * assign n cards to a player's hand
      */
     private void setHand(Player p, Card[] a, Card.HankRank h){
         Card[] hand = new Card[DEFAULT_HAND_CARDS];
@@ -246,6 +246,9 @@ public class Dealer {
      * Determine if a set of n cards is a flush
      */
     private boolean hasStraightFlush(Card[] a){
+        if (hasFlush(a) && hasStraight(a)){
+
+        }
         return false;
     }
 
@@ -253,7 +256,22 @@ public class Dealer {
      * Determine if a set of n cards is a flush
      */
     private boolean hasFlush(Card[] a){
-        return false;
+        int clubCount = 0, spadeCount = 0, diamondCount = 0, heartCount = 0;
+
+        for (int i = 0; i < a.length;i++){
+            switch (a[i].getSuit()) {
+                case 'd':
+                    diamondCount++;
+                case 'c':
+                    clubCount++;
+                case 's':
+                    spadeCount++;
+                case 'h':
+                    heartCount++;
+            }
+        }
+
+        return (clubCount >= 5 || spadeCount >= 5 || diamondCount >= 5 || heartCount >= 5);
     }
 
     /**

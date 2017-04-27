@@ -31,7 +31,7 @@ public class PokerClient {
                     break;
                 } else if(fromServer.equalsIgnoreCase("END")){
                     System.out.print("Enter: ");
-                    fromUser = stdIn.readLine();
+                    fromUser = in.readLine();
                     if (fromUser != null) {
                         System.out.println("Player: " + fromUser);
                         out.println(fromUser);

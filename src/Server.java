@@ -7,25 +7,10 @@ import java.net.*;
 public class Server {
     public static void main(String[] args){
 
-        String host = null;
-        int port = 0;
+        int port = 4444;
         OutputStream outputStream = null;
         Socket s = null;
 
-        // Get host name and port number from args
-        //test
-        if(args.length!=2) {
-            System.out.println("Please specify the hostname and the port number as command line args.");
-            System.exit(1);
-        } else {
-            host = args[0];
-            try {
-                port = Integer.parseInt(args[1]);
-            } catch(NumberFormatException e) {
-                System.out.println("Invalid port number: "+args[1]);
-                System.exit(1);
-            }
-        }
 
         boolean listening = true;
         try (ServerSocket serverSocket = new ServerSocket(port)) {

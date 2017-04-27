@@ -16,11 +16,7 @@ public class Server {
         boolean listening = true;
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             while (listening) {
-                Socket ss = serverSocket.accept();
-                PrintWriter out = new PrintWriter(ss.getOutputStream(), true);
-                BufferedReader in = new BufferedReader(
-                        new InputStreamReader(
-                                ss.getInputStream()));
+                new ServerThread(serverSocket.accept()).start();
             }
         } catch (IOException e) {
             System.err.println("Could not listen on port " + port);

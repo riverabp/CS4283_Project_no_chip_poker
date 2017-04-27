@@ -11,19 +11,20 @@ public class PokerClient {
         String hostName = "ec2-34-208-123-243.us-west-2.compute.amazonaws.com";
         int portNumber = 4444;
 
-        try (
-                Socket s = new Socket(hostName, portNumber);
-                PrintWriter out = new PrintWriter(s.getOutputStream(), true);
-                BufferedReader in = new BufferedReader(
+        try {
+
+            Socket s = new Socket(hostName, portNumber);
+            PrintWriter out = new PrintWriter(s.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(
                         new InputStreamReader(s.getInputStream()));
-        ) {
+
             BufferedReader stdIn =
                     new BufferedReader(new InputStreamReader(System.in));
             String fromUser;
             Stream<String> fromServer;
 
             while ((fromServer = in.lines()) != null) {
-                System.out.println("Server: " + fromServer);
+                System.out.println("Server: " + fromServer.toString());
                 if (fromServer.equals("Bye."))
                     break;
 

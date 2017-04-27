@@ -21,9 +21,9 @@ public class ServerProtocol {
 
         String[] args = theInput.trim().split("\\s");
 
-        if(state == NEW_GAME){
+        if(theInput.equalsIgnoreCase("start")){
             try{
-                theOutput = "test";
+                theOutput = "game start";
             } catch (NumberFormatException e){
                 theOutput = "ERROR: NumberFormatException";
             }

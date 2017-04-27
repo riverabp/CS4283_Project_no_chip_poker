@@ -20,6 +20,7 @@ public class ServerProtocol {
         if(args[0].equalsIgnoreCase("start")){
             try{
                 theOutput = printBanner()  + dealer.preFlop(table) + "\n" + printAvailableOptions();
+                theOutput += "END";
             } catch (NumberFormatException e){
                 theOutput = "ERROR: NumberFormatException";
             }

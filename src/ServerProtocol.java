@@ -9,6 +9,7 @@ public class ServerProtocol {
 
     private Dealer dealer = new Dealer();
     private Player player = new Player();
+    private Player player2 = new Player();
     Table table = new Table();
 
 

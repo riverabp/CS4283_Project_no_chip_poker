@@ -7,6 +7,7 @@ import java.net.*;
 public class Server {
     public static void main(String[] args){
 
+        System.out.println("--- Server Started ---");
         int port = 4444;
         OutputStream outputStream = null;
         Socket s = null;

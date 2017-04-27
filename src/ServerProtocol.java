@@ -20,7 +20,7 @@ public class ServerProtocol {
         if(args[0].equalsIgnoreCase("start")){
             try{
                 theOutput = printBanner()  + dealer.preFlop(table) + "\n" + printAvailableOptions();
-                theOutput += "END";
+                theOutput += "\nEND";
             } catch (NumberFormatException e){
                 theOutput = "ERROR: NumberFormatException";
             }
@@ -29,6 +29,7 @@ public class ServerProtocol {
         } else if (args[0].equalsIgnoreCase("FOLD")) {
             try {
                 theOutput = "folded.";
+                theOutput += "\nEND";
             } catch (NumberFormatException e) {
                 theOutput = "ERROR: NumberFormatException";
             }
@@ -37,12 +38,14 @@ public class ServerProtocol {
         } else if (args[0].equalsIgnoreCase("CHECK")) {
             try {
                 theOutput = "player check.";
+                theOutput += "\nEND";
             } catch (NumberFormatException e) {
                 theOutput = "ERROR: NumberFormatException";
             }
 
         } else if (args[0].equalsIgnoreCase("BET")) {
             theOutput = "player bet";
+            theOutput += "\nEND";
         } else {
             theOutput = "ERROR: invalid argument";
         }

@@ -20,7 +20,8 @@ public class ServerThread extends Thread {
             outputLine = sp.processInput("start");
             out.println(outputLine);
 
-            while ((inputLine = in.readLine()) != null) {
+            while (true) {
+                inputLine = in.readLine();
                 outputLine = sp.processInput(inputLine);
                 out.println(outputLine);
                 if (outputLine.equals("Game Over"))

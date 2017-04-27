@@ -27,7 +27,7 @@ public class ServerProtocol {
             theOutput = "Game Over";
         } else if (args[0].equalsIgnoreCase("FOLD")) {
             try {
-
+                theOutput = "folded.";
             } catch (NumberFormatException e) {
                 theOutput = "ERROR: NumberFormatException";
             }
@@ -35,15 +35,13 @@ public class ServerProtocol {
 
         } else if (args[0].equalsIgnoreCase("CHECK")) {
             try {
-
-
+                theOutput = "player check.";
             } catch (NumberFormatException e) {
                 theOutput = "ERROR: NumberFormatException";
             }
 
         } else if (args[0].equalsIgnoreCase("BET")) {
-
-
+            theOutput = "player bet";
         } else {
             theOutput = "ERROR: invalid argument";
         }

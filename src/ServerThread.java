@@ -18,6 +18,7 @@ public class ServerThread extends Thread {
             String inputLine, outputLine;
             ServerProtocol sp = new ServerProtocol();
             outputLine = sp.processInput("start");
+            out.println(outputLine);
 
             while ((inputLine = in.readLine()) != null) {
                 outputLine = sp.processInput(inputLine);

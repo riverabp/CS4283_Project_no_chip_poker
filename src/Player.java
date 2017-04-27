@@ -82,12 +82,12 @@ public class Player {
         System.out.println("stack: " + myStack);
         System.out.print("hole cards: ");
         for (int i = 0; i < myHoleCards.length; i++){
-            myHoleCards[i].print();
+           // myHoleCards[i].print();
         }
         System.out.println();
         System.out.print("hand: ");
         for (int i = 0; i < myHand.length; i++){
-            myHand[i].print();
+           // myHand[i].print();
         }
         System.out.println("\n"+myHandRank);
     }

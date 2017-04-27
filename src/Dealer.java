@@ -39,12 +39,15 @@ public class Dealer {
      * deals two hole cards to each player
      * @param table list of players
      */
-    public void preFlop(Table table){
+    public String preFlop(Table table){
+        String r = "";
         for (int i = 0; i < table.getPlayerCount(); i++){
             Card c1 = deck.draw();
             Card c2 = deck.draw();
             table.getPlayer(i).setHoleCards(c1,c2);
+            r = c1.toString() + " " + c2.toString();
         }
+        return r;
     }
 
     /**
@@ -159,7 +162,7 @@ public class Dealer {
     public void printBoard(){
         System.out.print("Board Cards: ");
         for(int i = 0; i < boardSize; i++){
-            board[i].print();
+            //board[i].print();
             System.out.print(" ");
         }
         System.out.print("\n\n");

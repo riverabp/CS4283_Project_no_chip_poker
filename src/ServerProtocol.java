@@ -6,14 +6,10 @@ import java.util.TreeMap;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ServerProtocol {
-    private static final String NEW_GAME = "NEW GAME";
-    private static final String CHECK = "CHECK";
-    private static final String BET = "BET";
-    private static final String FOLD = "FOLD";
+
     private Dealer dealer = new Dealer();
     private Player player = new Player();
-
-    private String state = NEW_GAME;
+    Table table = new Table();
 
 
     public String processInput(String theInput) {
@@ -23,13 +19,13 @@ public class ServerProtocol {
 
         if(args[0].equalsIgnoreCase("start")){
             try{
-                theOutput = printBanner() + printAvailableOptions();
+                theOutput = printBanner()  + dealer.preFlop(table) + "\n" + printAvailableOptions();
             } catch (NumberFormatException e){
                 theOutput = "ERROR: NumberFormatException";
             }
         } else if (args[0].equalsIgnoreCase("exit")) {
             theOutput = "Game Over";
-        } else if (args[0].equalsIgnoreCase(FOLD)) {
+        } else if (args[0].equalsIgnoreCase("FOLD")) {
             try {
 
             } catch (NumberFormatException e) {
@@ -37,7 +33,7 @@ public class ServerProtocol {
             }
 
 
-        } else if (args[0].equalsIgnoreCase(CHECK)) {
+        } else if (args[0].equalsIgnoreCase("CHECK")) {
             try {
 
 
@@ -45,7 +41,7 @@ public class ServerProtocol {
                 theOutput = "ERROR: NumberFormatException";
             }
 
-        } else if (args[0].equalsIgnoreCase(BET)) {
+        } else if (args[0].equalsIgnoreCase("BET")) {
 
 
         } else {
@@ -100,7 +96,7 @@ public class ServerProtocol {
     }
 
     private static String printAvailableOptions(){
-        return("\nAvailable Moves: [FOLD] [BET] [CALL]\n" +
+        return("\nAvailable Moves: [FOLD] [BET] [CALL] [EXIT]\n" +
                 "Enter: ");
     }
 }

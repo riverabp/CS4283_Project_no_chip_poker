@@ -89,24 +89,24 @@ public class Card implements Comparable<Card>{
     /**
      * Print card to the console e.g. "7c"
      */
-    public void print(){
-        System.out.print("|");
+    public String toString(){
+        String r = "";
         if(rank > 9){
             if(rank == 10){
-                System.out.print("T");
+                r += "T";
             } else if(rank == 11){
-                System.out.print("J");
+                r += "J";
             } else if(rank == 12){
-                System.out.print("Q");
+                r += "Q";
             } else if(rank == 13){
-                System.out.print("K");
+                r += "K";
             } else if(rank == 14){
-                System.out.print("A");
+                r += "A";
             }
         } else {
-            System.out.print(this.rank);
+            r += this.rank;
         }
-        System.out.print(suit + "|");
+        return r += this.suit;
     }
 
 }

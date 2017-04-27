@@ -26,16 +26,18 @@ public class PokerClient {
             fromServer = in.readLine();
 
             while (fromServer != null) {
-                System.out.println(fromServer);
                 if (fromServer.equalsIgnoreCase("Game Over")) {
+                    System.out.println(fromServer);
                     break;
                 } else if(fromServer.equalsIgnoreCase("END")){
+                    System.out.print("Enter: ");
                     fromUser = stdIn.readLine();
                     if (fromUser != null) {
                         System.out.println("Player: " + fromUser);
                         out.println(fromUser);
                     }
                 } else {
+                    System.out.println(fromServer);
                     fromServer = in.readLine();
                 }
 

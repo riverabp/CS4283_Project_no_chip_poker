@@ -23,7 +23,7 @@ public class ServerProtocol {
 
         if(args[0].equalsIgnoreCase("start")){
             try{
-                theOutput = "game start";
+                theOutput = printBanner();
             } catch (NumberFormatException e){
                 theOutput = "ERROR: NumberFormatException";
             }

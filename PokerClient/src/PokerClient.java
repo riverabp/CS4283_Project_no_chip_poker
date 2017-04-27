@@ -22,17 +22,23 @@ public class PokerClient {
                     new BufferedReader(new InputStreamReader(System.in));
             String fromUser;
             String fromServer;
+            String transmissionComplete = "END";
+            fromServer = in.readLine();
 
-            while ((fromServer = in.readLine()) != null) {
-                System.out.println("Server: " + fromServer);
-                if (fromServer.equalsIgnoreCase("Game Over"))
+            while (fromServer != null) {
+                System.out.println(fromServer);
+                if (fromServer.equalsIgnoreCase("Game Over")) {
                     break;
-
-                fromUser = stdIn.readLine();
-                if (fromUser != null) {
-                    System.out.println("Client: " + fromUser);
-                    out.println(fromUser);
+                } else if(fromServer.equalsIgnoreCase("END")){
+                    fromUser = stdIn.readLine();
+                    if (fromUser != null) {
+                        System.out.println("Player: " + fromUser);
+                        out.println(fromUser);
+                    }
+                } else {
+                    fromServer = in.readLine();
                 }
+
             }
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);

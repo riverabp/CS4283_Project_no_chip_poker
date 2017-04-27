@@ -11,14 +11,14 @@ public class ServerThread extends Thread {
 
     public void run() {
 
-        try (
-                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        ) {
+        try {
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
             String inputLine, outputLine;
             ServerProtocol sp = new ServerProtocol();
-            outputLine = sp.processInput(null);
-            out.println(outputLine);
+//            outputLine = sp.processInput(null);
+//            out.println(outputLine);
 
             while ((inputLine = in.readLine()) != null) {
                 outputLine = sp.processInput(inputLine);

@@ -21,10 +21,10 @@ public class PokerClient {
             BufferedReader stdIn =
                     new BufferedReader(new InputStreamReader(System.in));
             String fromUser;
-            Stream<String> fromServer;
+            Stream fromServer;
 
             while ((fromServer = in.lines()) != null) {
-                System.out.println("Server: " + fromServer.toString());
+                System.out.println("Server: " + fromServer);
                 if (fromServer.equals("Bye."))
                     break;
 

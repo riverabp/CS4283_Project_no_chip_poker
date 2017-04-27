@@ -23,7 +23,7 @@ public class ServerProtocol {
 
         if(args[0].equalsIgnoreCase("start")){
             try{
-                theOutput = printBanner();
+                theOutput = printBanner() + printAvailableOptions();
             } catch (NumberFormatException e){
                 theOutput = "ERROR: NumberFormatException";
             }
@@ -93,6 +93,14 @@ public class ServerProtocol {
                 "*   | |  __/>  < (_| \\__ \\ |  _  | (_) | | (_| | |  __/ | | | | | *\n" +
                 "*   |_|\\___/_/\\_\\__,_|___/ |_| |_|\\___/|_|\\__,_|  \\___|_| |_| |_| *\n" +
                 "*                                                                 *\n" +
-                "*******************************************************************\n\n");
+                "*******************************************************************\n\n" +
+                "Welcome to Texas Hold'em. You will begin with 200 chips. The blinds are\n" +
+                "set at 1/2. You are playing heads up against the computer and will start\n" +
+                "on the button.\n");
+    }
+
+    private static String printAvailableOptions(){
+        return("\nAvailable Moves: [FOLD] [BET] [CALL]\n" +
+                "Enter: ");
     }
 }

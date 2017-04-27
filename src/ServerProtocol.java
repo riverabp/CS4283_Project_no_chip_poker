@@ -27,23 +27,25 @@ public class ServerProtocol {
             } catch (NumberFormatException e){
                 theOutput = "ERROR: NumberFormatException";
             }
-        } else if(args[0].equalsIgnoreCase(FOLD)){
+        } else if (args[0].equalsIgnoreCase("exit")) {
+            theOutput = "Game Over";
+        } else if (args[0].equalsIgnoreCase(FOLD)) {
             try {
 
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 theOutput = "ERROR: NumberFormatException";
             }
 
 
         } else if (args[0].equalsIgnoreCase(CHECK)) {
-            try{
+            try {
 
 
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 theOutput = "ERROR: NumberFormatException";
             }
 
-        } else if (args[0].equalsIgnoreCase(BET)){
+        } else if (args[0].equalsIgnoreCase(BET)) {
 
 
         } else {

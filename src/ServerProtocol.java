@@ -21,14 +21,13 @@ public class ServerProtocol {
 
         String[] args = theInput.trim().split("\\s");
 
-        if(theInput.equalsIgnoreCase("start")){
+        if(args[0].equalsIgnoreCase("start")){
             try{
                 theOutput = "game start";
             } catch (NumberFormatException e){
                 theOutput = "ERROR: NumberFormatException";
             }
-        }
-        if(args[0].equalsIgnoreCase(FOLD)){
+        } else if(args[0].equalsIgnoreCase(FOLD)){
             try {
 
             } catch (NumberFormatException e){

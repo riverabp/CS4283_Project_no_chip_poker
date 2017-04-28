@@ -29,16 +29,16 @@ public class ServerProtocol {
                 theOutput += hero.toString(true);
             } else if (args[0].equalsIgnoreCase("CHECK")) {
                 theOutput += deal();
-                theOutput += "\nPot: " + table.getPot();
                 theOutput += hero.toString(true);
+                theOutput += "\nPot: " + table.getPot();
             } else if (args[0].equalsIgnoreCase("BET")) {
                 int b = Integer.parseInt(args[1]);
                 hero.bet(b);
                 villain.bet(b);
                 table.setPot(table.getPot() + (2 * b));
-                theOutput += "\nPot: " + table.getPot();
-                theOutput += hero.toString(true);
                 theOutput += deal();
+                theOutput += hero.toString(true);
+                theOutput += "\nPot: " + table.getPot();
             } else {
                 theOutput = "ERROR: invalid argument";
             }

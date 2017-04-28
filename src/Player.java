@@ -5,12 +5,12 @@ import java.util.Random;
  */
 public class Player {
 
-    public final double DEFAULT_STACK = 200;
+    public final int DEFAULT_STACK = 100;
     public final int HOLE_CARDS = 2;
     public final int HAND_CARDS = 5;
 
 
-    private double myStack;
+    private int myStack;
     private Card[] myHoleCards;
     private Card[] myHand;
     private String myName;

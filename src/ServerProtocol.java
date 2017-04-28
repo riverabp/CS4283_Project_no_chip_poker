@@ -62,13 +62,11 @@ public class ServerProtocol {
             }
 
         } else if (args[0].equalsIgnoreCase("BET")) {
-            theOutput = "player bet: ";
             int b = Integer.parseInt(args[1]);
             hero.bet(b);
             villain.bet(b);
             table.setPot(table.getPot() + (2 * b));
-            theOutput += b;
-            theOutput += "Pot: " + table.getPot();
+            theOutput += "\nPot: " + table.getPot();
             theOutput += printAvailableOptions();
         } else {
             theOutput = "ERROR: invalid argument";

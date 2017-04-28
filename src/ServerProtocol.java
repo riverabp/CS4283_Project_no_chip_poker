@@ -1,8 +1,5 @@
 import java.net.Socket;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ServerProtocol {
@@ -10,7 +7,7 @@ public class ServerProtocol {
     private Dealer dealer = new Dealer();
     private Player player = new Player();
     private Player player2 = new Player();
-    Table table = new Table();
+    private LinkedList<Player> t = new LinkedList<Player>();
 
 
     public String processInput(String theInput) {
@@ -20,8 +17,11 @@ public class ServerProtocol {
 
         if(args[0].equalsIgnoreCase("start")){
             try{
-                theOutput = printBanner()  + dealer.preFlop(table) + "\n" + printAvailableOptions();
-                theOutput += "\nEND";
+                theOutput = printBanner()  + "\n";
+                Table table = new Table(t);
+                theOutput += table.toString();
+                theOutput += "Your hand: " + dealer.preFlop(table);
+                theOutput += printAvailableOptions();
             } catch (NumberFormatException e){
                 theOutput = "ERROR: NumberFormatException";
             }
@@ -30,7 +30,6 @@ public class ServerProtocol {
         } else if (args[0].equalsIgnoreCase("FOLD")) {
             try {
                 theOutput = "folded.";
-                theOutput += "\nEND";
             } catch (NumberFormatException e) {
                 theOutput = "ERROR: NumberFormatException";
             }
@@ -39,14 +38,12 @@ public class ServerProtocol {
         } else if (args[0].equalsIgnoreCase("CHECK")) {
             try {
                 theOutput = "player check.";
-                theOutput += "\nEND";
             } catch (NumberFormatException e) {
                 theOutput = "ERROR: NumberFormatException";
             }
 
         } else if (args[0].equalsIgnoreCase("BET")) {
             theOutput = "player bet";
-            theOutput += "\nEND";
         } else {
             theOutput = "ERROR: invalid argument";
         }
@@ -78,7 +75,7 @@ public class ServerProtocol {
                 dealer.river();
                 dealer.printBoard();
                 dealer.assignHandRanks(table);
-                table.printSelf();
+                table.toString();
             }
         }
 
@@ -99,6 +96,7 @@ public class ServerProtocol {
     }
 
     private static String printAvailableOptions(){
-        return("\nAvailable Moves: [FOLD] [BET] [CALL] [EXIT]\n");
+        return("\nAvailable Moves: FOLD CALL BET <int> EXIT\n" +
+                "\nEND");
     }
 }

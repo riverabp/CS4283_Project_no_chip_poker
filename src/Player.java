@@ -77,18 +77,19 @@ public class Player {
     /**
      * print players stack, cards, and name
      */
-    public void printSelf(){
-        System.out.println("name: " + myName);
-        System.out.println("stack: " + myStack);
-        System.out.print("hole cards: ");
+    public String toString(){
+        String r = "";
+        r += ("name: " + myName);
+        r += ("stack: " + myStack);
+        r += ("hole cards: \n");
         for (int i = 0; i < myHoleCards.length; i++){
            // myHoleCards[i].print();
         }
-        System.out.println();
-        System.out.print("hand: ");
+        r += ("hand: ");
         for (int i = 0; i < myHand.length; i++){
            // myHand[i].print();
         }
-        System.out.println("\n"+myHandRank);
+        r += ("\n"+myHandRank);
+        return r;
     }
 }

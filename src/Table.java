@@ -114,12 +114,14 @@ public class Table {
     /**
      * Print the info of every player at the table
      */
-    public void printSelf(){
+    public String toString(){
+        String r = "";
         ListIterator<Player> itr = players.listIterator(0);
         System.out.println("Table:");
         while(itr.hasNext()){
-            itr.next().printSelf();
+            r += itr.next().toString();
             System.out.println();
         }
+        return r;
     }
 }

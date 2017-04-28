@@ -32,7 +32,6 @@ public class PokerClient {
                     System.out.print("Enter: ");
                     fromUser = stdIn.readLine();
                     if (fromUser != null) {
-                        System.out.println("Player: " + fromUser);
                         out.println(fromUser);
                     }
                 } else {

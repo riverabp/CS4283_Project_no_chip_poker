@@ -15,7 +15,6 @@ public class ServerProtocol {
 
     public String processInput(String theInput) {
         String theOutput = "";
-        System.out.println(theInput);
 
         String[] args = theInput.trim().split("\\s");
 

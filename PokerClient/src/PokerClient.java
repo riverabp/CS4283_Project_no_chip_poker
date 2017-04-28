@@ -37,9 +37,8 @@ public class PokerClient {
                     }
                 } else {
                     System.out.println(fromServer);
-                    fromServer = in.readLine();
                 }
-
+                fromServer = in.readLine();
             }
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);

@@ -105,10 +105,8 @@ public class Player {
      */
     public String toString(boolean printCards){
         String r = "";
-        r += ("name: " + myName + "\n");
-        r += ("stack: " + myStack + "\n");
         if(printCards) {
-            r += ("hole cards: ");
+            r += ("\nhole cards: ");
             for (int i = 0; i < myHoleCards.length; i++) {
                 r += myHoleCards[i].toString();
             }

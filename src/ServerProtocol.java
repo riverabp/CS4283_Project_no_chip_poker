@@ -28,18 +28,17 @@ public class ServerProtocol {
                 dealer.preFlop(table);
                 theOutput += hero.toString(true);
             } else if (args[0].equalsIgnoreCase("CHECK")) {
-                theOutput = "Player1 Check\n";
                 if (dealer.getState() == Dealer.STATE.PREFLOP) {
                     dealer.flop();
-                    theOutput += "Board: " + dealer.boardToString();
+                    theOutput += "\nBoard: " + dealer.boardToString();
                 } else if (dealer.getState() == Dealer.STATE.POSTFLOP) {
                     dealer.turn();
-                    theOutput += "Board: " + dealer.boardToString();
+                    theOutput += "\nBoard: " + dealer.boardToString();
                 } else if (dealer.getState() == Dealer.STATE.POSTTURN) {
                     dealer.river();
-                    theOutput += "Board: " + dealer.boardToString();
+                    theOutput += "\nBoard: " + dealer.boardToString();
                 } else if (dealer.getState() == Dealer.STATE.POSTRIVER) {
-                    theOutput += "Board: " + dealer.boardToString();
+                    theOutput += "\nBoard: " + dealer.boardToString();
                     dealer.setState(Dealer.STATE.SHOWDOWN);
                 }
             } else if (args[0].equalsIgnoreCase("BET")) {
@@ -78,10 +77,10 @@ public class ServerProtocol {
     private String printAvailableOptions() {
         String r = "";
         if (dealer.getState() == Dealer.STATE.PREDEAL) {
-            r += "Chips: " + hero.getMyStack() + "\nAvailable Moves: post exit\n" +
+            r += "\nChips: " + hero.getMyStack() + "\nAvailable Moves: post exit\n" +
                     "\nEND";
         } else {
-            r += "Chips: " + hero.getMyStack() + "\nAvailable Moves: check bet <int> exit\n" +
+            r += "\nChips: " + hero.getMyStack() + "\nAvailable Moves: check bet <int> exit\n" +
                     "\nEND";
         }
         return r;

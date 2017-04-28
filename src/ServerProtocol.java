@@ -23,7 +23,6 @@ public class ServerProtocol {
                     t.add(hero);
                     t.add(villain);
                     table = new Table(t);
-                    dealer.preFlop(table);
                     System.out.println(table.toString());
                     theOutput += printAvailableOptions();
                 } catch (NumberFormatException e) {

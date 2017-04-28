@@ -21,7 +21,8 @@ public class ServerProtocol {
                 t.add(hero);
                 t.add(villian);
                 Table table = new Table(t);
-                String preflop = dealer.preFlop(table);
+                dealer.preFlop(table);
+                String preflop = table.toString();
                 theOutput += preflop;
                 System.out.println(preflop);
                 theOutput += printAvailableOptions();

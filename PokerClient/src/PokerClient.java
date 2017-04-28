@@ -38,7 +38,6 @@ public class PokerClient {
                 } else {
                     System.out.println(fromServer);
                     fromServer = in.readLine();
-                    System.out.println(fromServer);
                 }
 
             }

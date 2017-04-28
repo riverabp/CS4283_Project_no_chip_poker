@@ -18,42 +18,33 @@ public class ServerProtocol {
             theOutput += "showdown.";
         } else {
             if (args[0].equalsIgnoreCase("START")) {
-                try {
-                    theOutput = printBanner() + "\n";
-                    t.add(hero);
-                    t.add(villain);
-                    table = new Table(t);
-                    System.out.println(table.toString());
-                    theOutput += printAvailableOptions();
-                } catch (NumberFormatException e) {
-                    theOutput = "ERROR: NumberFormatException";
-                }
+                theOutput = printBanner() + "\n";
+                t.add(hero);
+                t.add(villain);
+                table = new Table(t);
+                System.out.println(table.toString());
+                theOutput += printAvailableOptions();
             } else if (args[0].equalsIgnoreCase("EXIT")) {
                 theOutput = "Game Over";
             } else if (args[0].equalsIgnoreCase("POST")) {
                 dealer.preFlop(table);
                 theOutput += hero.toString(true);
             } else if (args[0].equalsIgnoreCase("CHECK")) {
-                try {
-                    theOutput = "Player1 Check\n";
-                    if (dealer.getState() == Dealer.STATE.PREFLOP) {
-                        dealer.flop();
-                        theOutput += "Board: " + dealer.boardToString();
-                    } else if (dealer.getState() == Dealer.STATE.POSTFLOP) {
-                        dealer.turn();
-                        theOutput += "Board: " + dealer.boardToString();
-                    } else if (dealer.getState() == Dealer.STATE.POSTTURN) {
-                        dealer.river();
-                        theOutput += "Board: " + dealer.boardToString();
-                    } else if (dealer.getState() == Dealer.STATE.POSTRIVER) {
-                        theOutput += "Board: " + dealer.boardToString();
-                        dealer.setState(Dealer.STATE.SHOWDOWN);
-                    }
-                    theOutput += printAvailableOptions();
-                } catch (NumberFormatException e) {
-                    theOutput = "ERROR: NumberFormatException";
+                theOutput = "Player1 Check\n";
+                if (dealer.getState() == Dealer.STATE.PREFLOP) {
+                    dealer.flop();
+                    theOutput += "Board: " + dealer.boardToString();
+                } else if (dealer.getState() == Dealer.STATE.POSTFLOP) {
+                    dealer.turn();
+                    theOutput += "Board: " + dealer.boardToString();
+                } else if (dealer.getState() == Dealer.STATE.POSTTURN) {
+                    dealer.river();
+                    theOutput += "Board: " + dealer.boardToString();
+                } else if (dealer.getState() == Dealer.STATE.POSTRIVER) {
+                    theOutput += "Board: " + dealer.boardToString();
+                    dealer.setState(Dealer.STATE.SHOWDOWN);
                 }
-
+                theOutput += printAvailableOptions();
             } else if (args[0].equalsIgnoreCase("BET")) {
                 int b = Integer.parseInt(args[1]);
                 hero.bet(b);
@@ -85,16 +76,17 @@ public class ServerProtocol {
                 "check you hand or bet any amount on any betting street, and the\n" +
                 "dealer will always call you. The player with the better hand at\n" +
                 "showdown will win the pot. You must post 1 chip to be dealt a\n" +
-                "hand. See how high you can grow your stack!" +
-                "Enter \"post\" to post your 1 chip blind.");
+                "hand. See how high you can grow your stack!\n" +
+                "\nEnter \"post\" to post your 1 chip blind.");
     }
 
     private String printAvailableOptions() {
         String r = "";
         if (dealer.getState() == Dealer.STATE.PREDEAL) {
-            r += "\nAvailable Moves: post exit\n";
+            r += "Chips: " + hero.getMyStack() + "\nAvailable Moves: post exit\n" +
+                    "\nEND";
         } else {
-            r += "\nAvailable Moves: check bet <int> exit\n" +
+            r += "Chips: " + hero.getMyStack() + "\nAvailable Moves: check bet <int> exit\n" +
                     "\nEND";
         }
         return r;

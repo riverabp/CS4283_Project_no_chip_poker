@@ -95,6 +95,10 @@ public class Player {
         this.myStack -= bet;
     }
 
+    public int getMyStack(){
+        return myStack;
+    }
+
 
     /**
      * print players stack, cards, and name

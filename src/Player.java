@@ -91,15 +91,17 @@ public class Player {
     /**
      * print players stack, cards, and name
      */
-    public String toString(){
+    public String toString(boolean printCards){
         String r = "";
         r += ("name: " + myName + "\n");
         r += ("stack: " + myStack + "\n");
-        r += ("hole cards: \n");
-        for (int i = 0; i < myHoleCards.length; i++){
-            r += myHoleCards[i].toString();
+        if(printCards) {
+            r += ("hole cards: ");
+            for (int i = 0; i < myHoleCards.length; i++) {
+                r += myHoleCards[i].toString();
+            }
+            r += ("\nhand: " + myHandRank + "\n\n");
         }
-        r += ("hand: "+myHandRank+"\n");
         return r;
     }
 }

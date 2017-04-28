@@ -22,9 +22,8 @@ public class ServerProtocol {
                 t.add(villain);
                 Table table = new Table(t);
                 dealer.preFlop(table);
-                String preflop = table.toString();
-                theOutput += preflop;
-                System.out.println(preflop);
+                theOutput += villain.toString(false) + hero.toString(true);
+                System.out.println(table.toString());
                 theOutput += printAvailableOptions();
             } catch (NumberFormatException e){
                 theOutput = "ERROR: NumberFormatException";

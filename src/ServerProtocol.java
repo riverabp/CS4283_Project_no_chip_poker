@@ -39,8 +39,22 @@ public class ServerProtocol {
         } else if (args[0].equalsIgnoreCase("CHECK")) {
             try {
                 theOutput = "Player1 Check\n";
-                dealer.flop();
-                theOutput += "Board: " + dealer.boardToString();
+                if(dealer.getState() == Dealer.STATE.PREFLOP){
+                    dealer.flop();
+                    theOutput += "Board: " + dealer.boardToString();
+                    dealer.setState(Dealer.STATE.POSTFLOP);
+                } else if(dealer.getState() == Dealer.STATE.POSTFLOP){
+                    dealer.turn();
+                    theOutput += "Board: " + dealer.boardToString();
+                    dealer.setState(Dealer.STATE.POSTTURN);
+                }else if(dealer.getState() == Dealer.STATE.POSTTURN){
+                    dealer.river();
+                    theOutput += "Board: " + dealer.boardToString();
+                    dealer.setState(Dealer.STATE.POSTRIVER);
+                } else if(dealer.getState() == Dealer.STATE.POSTRIVER){
+                    theOutput += "Board: " + dealer.boardToString();
+                    dealer.setState(Dealer.STATE.SHOWDOWN);
+                }
             } catch (NumberFormatException e) {
                 theOutput = "ERROR: NumberFormatException";
             }

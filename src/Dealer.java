@@ -17,6 +17,14 @@ public class Dealer {
     private Card[] burnedCards;
     private int boardSize;
     private Deck deck;
+    private STATE state;
+    public enum STATE{
+        PREFLOP,
+        POSTFLOP,
+        POSTTURN,
+        POSTRIVER,
+        SHOWDOWN
+    }
 
     /**
      * Default ctor.
@@ -26,6 +34,15 @@ public class Dealer {
         board = new Card[BOARD_SIZE];
         burnedCards = new Card[BURNED_CARDS];
         deck = new Deck();
+        state = STATE.PREFLOP;
+    }
+
+    public STATE getState(){
+        return this.state;
+    }
+
+    public void setState(STATE s){
+        this.state = s;
     }
 
     /**
@@ -40,6 +57,7 @@ public class Dealer {
      * @param table list of players
      */
     public void preFlop(Table table){
+
         String r = "";
         for (int i = 0; i < table.getPlayerCount(); i++){
             Card c1 = deck.draw();
@@ -57,6 +75,7 @@ public class Dealer {
         board[1] = deck.draw();
         board[2] = deck.draw();
         boardSize = 3;
+        state = STATE.POSTFLOP;
     }
 
     /**

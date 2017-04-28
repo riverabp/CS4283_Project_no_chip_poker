@@ -99,7 +99,6 @@ public class ServerProtocol {
     }
 
     private static String printAvailableOptions(){
-        return("\nAvailable Moves: [FOLD] [BET] [CALL] [EXIT]\n" +
-                "Enter: ");
+        return("\nAvailable Moves: [FOLD] [BET] [CALL] [EXIT]\n");
     }
 }

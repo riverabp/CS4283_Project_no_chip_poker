@@ -25,6 +25,7 @@ public class Player {
         myName = Integer.toString(random.nextInt(100000));
         myHoleCards = new Card[HOLE_CARDS];
         myHand = new Card[HAND_CARDS];
+        myHandRank = Card.HankRank.HIGH_CARD;
     }
 
     /**
@@ -36,6 +37,7 @@ public class Player {
         myName = n;
         myHoleCards = new Card[HOLE_CARDS];
         myHand = new Card[HAND_CARDS];
+        myHandRank = Card.HankRank.HIGH_CARD;
     }
 
     /**
@@ -48,6 +50,7 @@ public class Player {
         myHoleCards = new Card[HOLE_CARDS];
         setHoleCards(c1,c2);
         myHand = new Card[HAND_CARDS];
+        myHandRank = Card.HankRank.HIGH_CARD;
     }
 
     /**
@@ -96,13 +99,7 @@ public class Player {
         for (int i = 0; i < myHoleCards.length; i++){
             r += myHoleCards[i].toString();
         }
-        r += ("hand: ");
-        if(myHand.length > 0) {
-            for (int i = 0; i < myHand.length; i++) {
-                r += myHand[i].toString();
-            }
-        }
-        r += ("\n"+myHandRank);
+        r += ("hand: "+myHandRank+"\n");
         return r;
     }
 }

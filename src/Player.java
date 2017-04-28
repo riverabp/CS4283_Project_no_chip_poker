@@ -100,7 +100,7 @@ public class Player {
             for (int i = 0; i < myHoleCards.length; i++) {
                 r += myHoleCards[i].toString();
             }
-            r += ("\nhand: " + myHandRank + "\n\n");
+            r += ("\nhand: " + myHandRank + "\n");
         }
         return r;
     }

@@ -22,8 +22,6 @@ public class ServerProtocol {
                 t.add(hero);
                 t.add(villain);
                 table = new Table(t);
-                System.out.println(table.toString());
-                theOutput += printAvailableOptions();
             } else if (args[0].equalsIgnoreCase("EXIT")) {
                 theOutput = "Game Over";
             } else if (args[0].equalsIgnoreCase("POST")) {
@@ -44,20 +42,17 @@ public class ServerProtocol {
                     theOutput += "Board: " + dealer.boardToString();
                     dealer.setState(Dealer.STATE.SHOWDOWN);
                 }
-                theOutput += printAvailableOptions();
             } else if (args[0].equalsIgnoreCase("BET")) {
                 int b = Integer.parseInt(args[1]);
                 hero.bet(b);
                 villain.bet(b);
                 table.setPot(table.getPot() + (2 * b));
                 theOutput += "\nPot: " + table.getPot();
-                theOutput += printAvailableOptions();
             } else {
                 theOutput = "ERROR: invalid argument";
-                theOutput += printAvailableOptions();
             }
         }
-
+        theOutput += printAvailableOptions();
         return theOutput;
     }
 

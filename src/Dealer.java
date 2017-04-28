@@ -19,6 +19,7 @@ public class Dealer {
     private Deck deck;
     private STATE state;
     public enum STATE{
+        PREDEAL,
         PREFLOP,
         POSTFLOP,
         POSTTURN,
@@ -34,7 +35,7 @@ public class Dealer {
         board = new Card[BOARD_SIZE];
         burnedCards = new Card[BURNED_CARDS];
         deck = new Deck();
-        state = STATE.PREFLOP;
+        state = STATE.PREDEAL;
     }
 
     public STATE getState(){
@@ -64,6 +65,7 @@ public class Dealer {
             Card c2 = deck.draw();
             table.getPlayer(i).setHoleCards(c1,c2);
         }
+        this.state = STATE.PREFLOP;
     }
 
     /**
@@ -85,6 +87,7 @@ public class Dealer {
         burnedCards[1] = deck.draw();
         board[3] = deck.draw();
         boardSize = 4;
+        state = STATE.POSTTURN;
     }
 
     /**
@@ -94,6 +97,7 @@ public class Dealer {
         burnedCards[2] = deck.draw();
         board[4] = deck.draw();
         boardSize = 5;
+        state = STATE.POSTRIVER;
     }
 
     /**

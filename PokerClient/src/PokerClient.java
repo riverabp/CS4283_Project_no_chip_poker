@@ -22,7 +22,6 @@ public class PokerClient {
                     new BufferedReader(new InputStreamReader(System.in));
             String fromUser;
             String fromServer;
-            String transmissionComplete = "END";
             fromServer = in.readLine();
 
             while (fromServer != null) {

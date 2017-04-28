@@ -22,6 +22,7 @@ public class ServerThread extends Thread {
 
             while (true) {
                 inputLine = in.readLine();
+                System.out.println(inputLine);
                 outputLine = sp.processInput(inputLine);
                 out.println(outputLine);
                 if (outputLine.equals("Game Over"))

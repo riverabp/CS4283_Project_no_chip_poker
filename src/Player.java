@@ -88,9 +88,13 @@ public class Player {
         return myHoleCards[index];
     }
 
+    /**
+     * @param bet decrease mystack
+     */
     public void bet(int bet){
         this.myStack -= bet;
     }
+
 
     /**
      * print players stack, cards, and name

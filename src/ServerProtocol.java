@@ -6,6 +6,7 @@ public class ServerProtocol {
     private Player hero = new Player("Player 1");
     private Player villain = new Player("Computer");
     private LinkedList<Player> t = new LinkedList<>();
+    private Table table;
 
 
     public String processInput(String theInput) {
@@ -18,7 +19,7 @@ public class ServerProtocol {
                 theOutput = printBanner()  + "\n";
                 t.add(hero);
                 t.add(villain);
-                Table table = new Table(t);
+                table = new Table(t);
                 dealer.preFlop(table);
                 theOutput += villain.toString(false) + "\n"+ hero.toString(true);
                 System.out.println(table.toString());
@@ -60,43 +61,19 @@ public class ServerProtocol {
             }
 
         } else if (args[0].equalsIgnoreCase("BET")) {
-            theOutput = "player bet";
+            theOutput = "player bet: ";
+            int b = Integer.parseInt(args[1]);
+            hero.bet(b);
+            villain.bet(b);
+            table.setPot(table.getPot() + (2 * b));
+            theOutput += b;
+            theOutput += "Pot: " + table.getPot();
         } else {
             theOutput = "ERROR: invalid argument";
         }
 
         return theOutput;
     }
-
-//    public static void runGame() {
-//        printBanner();
-//        System.out.println();
-//        Scanner scr = new Scanner(System.in);
-//
-//        //create table of 6 players
-//        Table table = new Table();
-//        boolean donePlaying = false;
-//
-//        //loop while playing
-//        while (!donePlaying) {
-//            System.out.println("Would you like to play a hand? Y / N");
-//            if (!scr.next().equalsIgnoreCase("y")) {
-//                donePlaying = true;
-//            } else {
-//                Dealer dealer = new Dealer();
-//                dealer.preFlop(table);
-//                dealer.flop();
-//                dealer.printBoard();
-//                dealer.turn();
-//                dealer.printBoard();
-//                dealer.river();
-//                dealer.printBoard();
-//                dealer.assignHandRanks(table);
-//                table.toString();
-//            }
-//        }
-//
-//    }
 
     private static String printBanner(){
         return("\n\n*******************************************************************\n" +
@@ -107,16 +84,16 @@ public class ServerProtocol {
                 "*   |_|\\___/_/\\_\\__,_|___/ |_| |_|\\___/|_|\\__,_|  \\___|_| |_| |_| *\n" +
                 "*                                                                 *\n" +
                 "*******************************************************************\n\n" +
-                "Welcome to this variant of Texas Hold'em. You will begin with 100 " +
-                "chips. You are dealt 2 cards and 5 cards are dealt by the dealer." +
-                "Like Blackjack, you are playing against the dealer. You can always " +
-                "check you hand or bet any amount on any betting street, and the " +
-                "dealer will always call you. The player with the better hand at" +
-                "hand at showdown will win the pot.\n");
+                "Welcome to this variant of Texas Hold'em. You will begin with 100\n " +
+                "chips. You are dealt 2 cards, and 5 cards are dealt by the dealer.\n" +
+                "Like Blackjack, you are playing against the dealer. You can always\n " +
+                "check you hand or bet any amount on any betting street, and the\n " +
+                "dealer will always call you. The player with the better hand at\n" +
+                "showdown will win the pot.\n");
     }
 
     private static String printAvailableOptions(){
-        return("\nAvailable Moves: CHECK BET <int> EXIT\n" +
+        return("\nAvailable Moves: check bet <int> exit\n" +
                 "\nEND");
     }
 }

@@ -112,6 +112,14 @@ public class Table {
         return players;
     }
 
+    public void setPot(int b){
+       this.pot = b;
+    }
+
+    public int getPot(){
+        return this.pot;
+    }
+
     /**
      * Print the info of every player at the table
      */

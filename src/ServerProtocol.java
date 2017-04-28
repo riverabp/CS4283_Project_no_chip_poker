@@ -54,35 +54,35 @@ public class ServerProtocol {
         return theOutput;
     }
 
-    public static void runGame() {
-        printBanner();
-        System.out.println();
-        Scanner scr = new Scanner(System.in);
-
-        //create table of 6 players
-        Table table = new Table();
-        boolean donePlaying = false;
-
-        //loop while playing
-        while (!donePlaying) {
-            System.out.println("Would you like to play a hand? Y / N");
-            if (!scr.next().equalsIgnoreCase("y")) {
-                donePlaying = true;
-            } else {
-                Dealer dealer = new Dealer();
-                dealer.preFlop(table);
-                dealer.flop();
-                dealer.printBoard();
-                dealer.turn();
-                dealer.printBoard();
-                dealer.river();
-                dealer.printBoard();
-                dealer.assignHandRanks(table);
-                table.toString();
-            }
-        }
-
-    }
+//    public static void runGame() {
+//        printBanner();
+//        System.out.println();
+//        Scanner scr = new Scanner(System.in);
+//
+//        //create table of 6 players
+//        Table table = new Table();
+//        boolean donePlaying = false;
+//
+//        //loop while playing
+//        while (!donePlaying) {
+//            System.out.println("Would you like to play a hand? Y / N");
+//            if (!scr.next().equalsIgnoreCase("y")) {
+//                donePlaying = true;
+//            } else {
+//                Dealer dealer = new Dealer();
+//                dealer.preFlop(table);
+//                dealer.flop();
+//                dealer.printBoard();
+//                dealer.turn();
+//                dealer.printBoard();
+//                dealer.river();
+//                dealer.printBoard();
+//                dealer.assignHandRanks(table);
+//                table.toString();
+//            }
+//        }
+//
+//    }
 
     private static String printBanner(){
         return("\n\n*******************************************************************\n" +

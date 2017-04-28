@@ -24,6 +24,7 @@ public class ServerThread extends Thread {
                 inputLine = in.readLine();
                 System.out.println("Client: " + inputLine);
                 outputLine = sp.processInput(inputLine);
+                System.out.println(outputLine);
                 out.println(outputLine);
                 if (outputLine.equals("Game Over"))
                     break;

@@ -24,7 +24,7 @@ public class PokerClient {
             String fromServer;
             fromServer = in.readLine();
 
-            while (fromServer != null) {
+            while (true) {
                 if (fromServer.equalsIgnoreCase("Game Over")) {
                     System.out.println(fromServer);
                     break;

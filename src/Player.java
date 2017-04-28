@@ -30,6 +30,17 @@ public class Player {
     /**
      * default ctor
      */
+    public Player(String n){
+        myStack = DEFAULT_STACK;
+        Random random = new Random();
+        myName = n;
+        myHoleCards = new Card[HOLE_CARDS];
+        myHand = new Card[HAND_CARDS];
+    }
+
+    /**
+     * default ctor
+     */
     public Player(Card c1, Card c2){
         myStack = DEFAULT_STACK;
         Random random = new Random();
@@ -79,15 +90,15 @@ public class Player {
      */
     public String toString(){
         String r = "";
-        r += ("name: " + myName);
-        r += ("stack: " + myStack);
+        r += ("name: " + myName + "\n");
+        r += ("stack: " + myStack + "\n");
         r += ("hole cards: \n");
         for (int i = 0; i < myHoleCards.length; i++){
-           // myHoleCards[i].print();
+            r += myHoleCards[i].toString();
         }
         r += ("hand: ");
         for (int i = 0; i < myHand.length; i++){
-           // myHand[i].print();
+            r +=  myHand[i].toString();
         }
         r += ("\n"+myHandRank);
         return r;

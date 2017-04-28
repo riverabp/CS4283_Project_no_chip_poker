@@ -5,8 +5,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class ServerProtocol {
 
     private Dealer dealer = new Dealer();
-    private Player hero = new Player();
-    private Player villian = new Player();
+    private Player hero = new Player("hero");
+    private Player villain = new Player("villain");
     private LinkedList<Player> t = new LinkedList<Player>();
 
 
@@ -19,7 +19,7 @@ public class ServerProtocol {
             try{
                 theOutput = printBanner()  + "\n";
                 t.add(hero);
-                t.add(villian);
+                t.add(villain);
                 Table table = new Table(t);
                 dealer.preFlop(table);
                 String preflop = table.toString();

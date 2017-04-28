@@ -88,6 +88,10 @@ public class Player {
         return myHoleCards[index];
     }
 
+    public void bet(int bet){
+        this.myStack -= bet;
+    }
+
     /**
      * print players stack, cards, and name
      */

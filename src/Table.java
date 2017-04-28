@@ -12,6 +12,7 @@ public class Table {
 
     private int buttonPosition;
     private int playerCount;
+    private int pot;
     private int orbits;
     private LinkedList<Player> players;
     private Dealer dealer;

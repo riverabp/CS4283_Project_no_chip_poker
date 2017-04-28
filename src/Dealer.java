@@ -157,13 +157,14 @@ public class Dealer {
     /**
      * Print the board cards to the console
      */
-    public void printBoard(){
+    public String boardToString(){
+        String r = "";
         System.out.print("Board Cards: ");
         for(int i = 0; i < boardSize; i++){
-            //board[i].print();
-            System.out.print(" ");
+            r += board[i].toString() + " ";
         }
         System.out.print("\n\n");
+        return r;
     }
 
     /**

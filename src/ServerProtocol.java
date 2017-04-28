@@ -1,13 +1,11 @@
-import java.net.Socket;
 import java.util.*;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ServerProtocol {
 
     private Dealer dealer = new Dealer();
-    private Player hero = new Player("hero");
-    private Player villain = new Player("villain");
-    private LinkedList<Player> t = new LinkedList<Player>();
+    private Player hero = new Player("Player 1");
+    private Player villain = new Player("Computer");
+    private LinkedList<Player> t = new LinkedList<>();
 
 
     public String processInput(String theInput) {
@@ -40,7 +38,9 @@ public class ServerProtocol {
 
         } else if (args[0].equalsIgnoreCase("CHECK")) {
             try {
-                theOutput = "player check.";
+                theOutput = "Player1 Check\n";
+                dealer.flop();
+                theOutput += "Board: " + dealer.boardToString();
             } catch (NumberFormatException e) {
                 theOutput = "ERROR: NumberFormatException";
             }
@@ -93,13 +93,16 @@ public class ServerProtocol {
                 "*   |_|\\___/_/\\_\\__,_|___/ |_| |_|\\___/|_|\\__,_|  \\___|_| |_| |_| *\n" +
                 "*                                                                 *\n" +
                 "*******************************************************************\n\n" +
-                "Welcome to Texas Hold'em. You will begin with 200 chips. The blinds are\n" +
-                "set at 1/2. You are playing heads up against the computer and will start\n" +
-                "on the button.\n");
+                "Welcome to this variant of Texas Hold'em. You will begin with 100 " +
+                "chips. You are dealt 2 cards and 5 cards are dealt by the dealer." +
+                "Like Blackjack, you are playing against the dealer. You can always " +
+                "check you hand or bet any amount on any betting street, and the " +
+                "dealer will always call you. The player with the better hand at" +
+                "hand at showdown will win the pot.\n");
     }
 
     private static String printAvailableOptions(){
-        return("\nAvailable Moves: FOLD CALL BET <int> EXIT\n" +
+        return("\nAvailable Moves: CHECK BET <int> EXIT\n" +
                 "\nEND");
     }
 }

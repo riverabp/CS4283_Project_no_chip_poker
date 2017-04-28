@@ -97,8 +97,10 @@ public class Player {
             r += myHoleCards[i].toString();
         }
         r += ("hand: ");
-        for (int i = 0; i < myHand.length; i++){
-            r +=  myHand[i].toString();
+        if(myHand.length > 0) {
+            for (int i = 0; i < myHand.length; i++) {
+                r += myHand[i].toString();
+            }
         }
         r += ("\n"+myHandRank);
         return r;

@@ -19,8 +19,9 @@ public class ServerProtocol {
             try{
                 theOutput = printBanner()  + "\n";
                 Table table = new Table(t);
-                theOutput += table.toString();
-                theOutput += "Your hand: " + dealer.preFlop(table);
+                String preflop = dealer.preFlop(table);
+                theOutput += preflop;
+                System.out.println(preflop);
                 theOutput += printAvailableOptions();
             } catch (NumberFormatException e){
                 theOutput = "ERROR: NumberFormatException";

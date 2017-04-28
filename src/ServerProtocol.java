@@ -28,31 +28,39 @@ public class ServerProtocol {
                 dealer.preFlop(table);
                 theOutput += hero.toString(true);
             } else if (args[0].equalsIgnoreCase("CHECK")) {
-                if (dealer.getState() == Dealer.STATE.PREFLOP) {
-                    dealer.flop();
-                    theOutput += "\nBoard: " + dealer.boardToString();
-                } else if (dealer.getState() == Dealer.STATE.POSTFLOP) {
-                    dealer.turn();
-                    theOutput += "\nBoard: " + dealer.boardToString();
-                } else if (dealer.getState() == Dealer.STATE.POSTTURN) {
-                    dealer.river();
-                    theOutput += "\nBoard: " + dealer.boardToString();
-                } else if (dealer.getState() == Dealer.STATE.POSTRIVER) {
-                    theOutput += "\nBoard: " + dealer.boardToString();
-                    dealer.setState(Dealer.STATE.SHOWDOWN);
-                }
+                theOutput += deal();
             } else if (args[0].equalsIgnoreCase("BET")) {
                 int b = Integer.parseInt(args[1]);
                 hero.bet(b);
                 villain.bet(b);
                 table.setPot(table.getPot() + (2 * b));
                 theOutput += "\nPot: " + table.getPot();
+                theOutput += hero.toString(true);
+                theOutput += deal();
             } else {
                 theOutput = "ERROR: invalid argument";
             }
         }
         theOutput += printAvailableOptions();
         return theOutput;
+    }
+
+    private String deal(){
+        String r = "";
+        if (dealer.getState() == Dealer.STATE.PREFLOP) {
+            dealer.flop();
+            r += "\nBoard: " + dealer.boardToString();
+        } else if (dealer.getState() == Dealer.STATE.POSTFLOP) {
+            dealer.turn();
+            r += "\nBoard: " + dealer.boardToString();
+        } else if (dealer.getState() == Dealer.STATE.POSTTURN) {
+            dealer.river();
+            r += "\nBoard: " + dealer.boardToString();
+        } else if (dealer.getState() == Dealer.STATE.POSTRIVER) {
+            r += "\nBoard: " + dealer.boardToString();
+            dealer.setState(Dealer.STATE.SHOWDOWN);
+        }
+        return r;
     }
 
     private static String printBanner(){

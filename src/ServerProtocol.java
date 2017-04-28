@@ -56,6 +56,7 @@ public class ServerProtocol {
                     theOutput += "Board: " + dealer.boardToString();
                     dealer.setState(Dealer.STATE.SHOWDOWN);
                 }
+                theOutput += printAvailableOptions();
             } catch (NumberFormatException e) {
                 theOutput = "ERROR: NumberFormatException";
             }
@@ -68,8 +69,10 @@ public class ServerProtocol {
             table.setPot(table.getPot() + (2 * b));
             theOutput += b;
             theOutput += "Pot: " + table.getPot();
+            theOutput += printAvailableOptions();
         } else {
             theOutput = "ERROR: invalid argument";
+            theOutput += printAvailableOptions();
         }
 
         return theOutput;

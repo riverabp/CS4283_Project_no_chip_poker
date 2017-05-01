@@ -99,11 +99,12 @@ public class ServerProtocol {
                 "Welcome to this variant of Texas Hold'em. You will begin with 100\n" +
                 "chips. You are dealt 2 cards, and 5 cards are dealt by the dealer.\n" +
                 "Like Blackjack, you are playing against the dealer. You must post 2\n" +
-                "chips to be dealt a hand. Checking also posts 2 chips before every\n" +
-                "turn in hand, so fold if you think you are going to lose. If you " +
-                "think you may win the hand, you can bet any amount, and the dealer\n" +
-                "will always call you. If the hand goes to showdown, the winner\n" +
-                "takes all. Enter \"post\" to receive your first hand.");
+                "chips to be dealt a hand. Checking also costs 2 chips, so fold if\n" +
+                "you think you are going to lose. If you think you may win the hand,\n"+
+                "you can bet any amount, and the dealer will always call you. If the\n"+
+                "hand goes to showdown, the winner takes all\n"+
+                "\nEnter \"post\" to receive your first hand." +
+                "\nEnter \"exit\" at any time to quit.");
     }
 
     private String printAvailableOptions() {

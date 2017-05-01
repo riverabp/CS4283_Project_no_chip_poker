@@ -92,7 +92,8 @@ public class ServerProtocol {
                 "check you hand or bet any amount on any betting street, and the\n" +
                 "dealer will always call you. The player with the better hand at\n" +
                 "showdown will win the pot. You must post 2 chips to be dealt a\n" +
-                "hand. See how high you can grow your stack!\n" +
+                "hand. You win in the event of a tie. See how high you can grow " +
+                "your stack!\n" +
                 "\nEnter \"post\" to post your 2 chip blind.");
     }
 

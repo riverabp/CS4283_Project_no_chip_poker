@@ -23,12 +23,16 @@ public class ServerProtocol {
             theOutput = "Game Over";
         } else if (args[0].equalsIgnoreCase("POST")) {
             dealer.preFlop(table);
-            hero.bet(2);
+            if(hero.getMyStack() >= 2) {
+                hero.bet(2);
+            }
             table.setPot(4);
             theOutput += hero.toString(true);
         } else if (args[0].equalsIgnoreCase("CHECK")) {
             theOutput += deal();
-            hero.bet(2);
+            if(hero.getMyStack() >= 2) {
+                hero.bet(2);
+            }
             theOutput += hero.toString(true);
             theOutput += "\nPot: " + table.getPot();
         } else if (args[0].equalsIgnoreCase("BET")) {

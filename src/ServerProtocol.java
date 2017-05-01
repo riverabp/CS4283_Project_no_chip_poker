@@ -66,7 +66,7 @@ public class ServerProtocol {
             } else {
                 hero.winChips(table.getPot());
                 table.setPot(0);
-                r += "Player1 Wins\n";
+                r += "You Win!!\n";
                 dealer.setState(Dealer.STATE.PREDEAL);
             }
         }
@@ -95,7 +95,9 @@ public class ServerProtocol {
     private String printAvailableOptions() {
         String r = "";
         if (dealer.getState() == Dealer.STATE.PREDEAL) {
-            r += "\nChips: " + hero.getMyStack() + "\nAvailable Moves: post exit\n" +
+            r += "\nChips: " + hero.getMyStack() +
+                    "\n*******************************************************************" +
+                    "\nAvailable Moves: post exit\n" +
                     "\nEND";
         } else {
             r += "\nChips: " + hero.getMyStack() + "\nAvailable Moves: check bet <int> exit\n" +

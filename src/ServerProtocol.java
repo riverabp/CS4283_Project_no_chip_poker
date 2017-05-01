@@ -61,10 +61,11 @@ public class ServerProtocol {
             dealer.assignHandRanks(table);
             if(villain.getHandRank().compareTo(hero.getHandRank()) < 0){
                 table.setPot(0);
-                r += "";
+                r += "Computer Wins\n";
             } else {
                 hero.winChips(table.getPot());
                 table.setPot(0);
+                r += "Player1 Wins\n";
             }
         }
         return r;

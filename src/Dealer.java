@@ -371,21 +371,21 @@ public class Dealer {
         LinkedList<Card> cList = new LinkedList<>(Arrays.asList(a));
         //remove duplicates
         for (int i = 0; i < cList.size() - 1;i++) {
-            if (cList.get(i).getRank() - cList.get(i+1).getRank() != 1){
+            if (cList.get(i).getRank() - cList.get(i+1).getRank() == 0){
                 cList.remove(i+1);
                 i--;
             }
         }
 
-        //if not in order
-        if(cList.size() < 5){
-            return false;
-        }
         for (int i = 0; i < cList.size() - 1; i++) {
 
             if ((cList.get(i).getRank() - cList.get(i+1).getRank()) > 1){
-                return false;
+                cList.remove(i);
+                i--;
             }
+        }
+        if(cList.size() < 5){
+            return false;
         }
 
         return true;

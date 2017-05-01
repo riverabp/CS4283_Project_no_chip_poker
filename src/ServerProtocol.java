@@ -38,7 +38,10 @@ public class ServerProtocol {
             theOutput += deal();
             theOutput += hero.toString(true);
             theOutput += "\nPot: " + table.getPot();
-        } else {
+        } else if (args[0].equalsIgnoreCase("FOLD")){
+            dealer.setState(Dealer.STATE.PREDEAL);
+            table.setPot(0);
+        }else  {
             theOutput = "ERROR: invalid argument";
         }
 

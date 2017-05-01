@@ -73,7 +73,7 @@ public class ServerProtocol {
                 table.setPot(0);
                 r += "Computer Wins\n";
                 r += "Computer Hand: " + villain.getHandRank();
-                r += "Computer Hand: " + villain.toString(true);
+                r += "\nComputer Hand: " + villain.toString(true);
                 r += "\nYour Hand: " + hero.getHandRank();
                 dealer.setState(Dealer.STATE.PREDEAL);
             } else {
@@ -81,7 +81,7 @@ public class ServerProtocol {
                 table.setPot(0);
                 r += "You Win!!\n";
                 r += "Computer Hand: " + villain.getHandRank();
-                r += "Computer Hand: " + villain.toString(true);
+                r += "\nComputer Hand: " + villain.toString(true);
                 r += "\nYour Hand: " + hero.getHandRank();
                 dealer.setState(Dealer.STATE.PREDEAL);
             }

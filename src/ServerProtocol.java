@@ -59,7 +59,7 @@ public class ServerProtocol {
             r += "\nBoard: " + dealer.boardToString();
         } else if (dealer.getState() == Dealer.STATE.POSTRIVER){
             dealer.assignHandRanks(table);
-            if(villain.getHandRank().compareTo(hero.getHandRank()) < 0){
+            if(villain.getHandRank().compareTo(hero.getHandRank()) > 0){
                 table.setPot(0);
                 r += "Computer Wins\n";
                 r += "Computer Hand: " + villain.getHandRank();

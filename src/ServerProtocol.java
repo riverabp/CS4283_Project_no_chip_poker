@@ -14,35 +14,34 @@ public class ServerProtocol {
 
         String[] args = theInput.trim().split("\\s");
 
-        if(dealer.getState() == Dealer.STATE.SHOWDOWN){
-            theOutput += "showdown.";
+        if (args[0].equalsIgnoreCase("START")) {
+            theOutput = printBanner() + "\n";
+            t.add(hero);
+            t.add(villain);
+            table = new Table(t);
+        } else if (args[0].equalsIgnoreCase("EXIT")) {
+            theOutput = "Game Over";
+        } else if (args[0].equalsIgnoreCase("POST")) {
+            dealer.preFlop(table);
+            hero.bet(2);
+            table.setPot(4);
+            theOutput += hero.toString(true);
+        } else if (args[0].equalsIgnoreCase("CHECK")) {
+            theOutput += deal();
+            theOutput += hero.toString(true);
+            theOutput += "\nPot: " + table.getPot();
+        } else if (args[0].equalsIgnoreCase("BET")) {
+            int b = Integer.parseInt(args[1]);
+            hero.bet(b);
+            villain.bet(b);
+            table.setPot(table.getPot() + (2 * b));
+            theOutput += deal();
+            theOutput += hero.toString(true);
+            theOutput += "\nPot: " + table.getPot();
         } else {
-            if (args[0].equalsIgnoreCase("START")) {
-                theOutput = printBanner() + "\n";
-                t.add(hero);
-                t.add(villain);
-                table = new Table(t);
-            } else if (args[0].equalsIgnoreCase("EXIT")) {
-                theOutput = "Game Over";
-            } else if (args[0].equalsIgnoreCase("POST")) {
-                dealer.preFlop(table);
-                theOutput += hero.toString(true);
-            } else if (args[0].equalsIgnoreCase("CHECK")) {
-                theOutput += deal();
-                theOutput += hero.toString(true);
-                theOutput += "\nPot: " + table.getPot();
-            } else if (args[0].equalsIgnoreCase("BET")) {
-                int b = Integer.parseInt(args[1]);
-                hero.bet(b);
-                villain.bet(b);
-                table.setPot(table.getPot() + (2 * b));
-                theOutput += deal();
-                theOutput += hero.toString(true);
-                theOutput += "\nPot: " + table.getPot();
-            } else {
-                theOutput = "ERROR: invalid argument";
-            }
+            theOutput = "ERROR: invalid argument";
         }
+
         theOutput += printAvailableOptions();
         return theOutput;
     }
@@ -58,9 +57,15 @@ public class ServerProtocol {
         } else if (dealer.getState() == Dealer.STATE.POSTTURN) {
             dealer.river();
             r += "\nBoard: " + dealer.boardToString();
-        } else if (dealer.getState() == Dealer.STATE.POSTRIVER) {
-            r += "\nBoard: " + dealer.boardToString();
-            dealer.setState(Dealer.STATE.SHOWDOWN);
+        } else if (dealer.getState() == Dealer.STATE.POSTRIVER){
+            dealer.assignHandRanks(table);
+            if(villain.getHandRank().compareTo(hero.getHandRank()) < 0){
+                table.setPot(0);
+                r += "";
+            } else {
+                hero.winChips(table.getPot());
+                table.setPot(0);
+            }
         }
         return r;
     }
@@ -79,9 +84,9 @@ public class ServerProtocol {
                 "Like Blackjack, you are playing against the dealer. You can always\n" +
                 "check you hand or bet any amount on any betting street, and the\n" +
                 "dealer will always call you. The player with the better hand at\n" +
-                "showdown will win the pot. You must post 1 chip to be dealt a\n" +
+                "showdown will win the pot. You must post 2 chips to be dealt a\n" +
                 "hand. See how high you can grow your stack!\n" +
-                "\nEnter \"post\" to post your 1 chip blind.");
+                "\nEnter \"post\" to post your 2 chip blind.");
     }
 
     private String printAvailableOptions() {

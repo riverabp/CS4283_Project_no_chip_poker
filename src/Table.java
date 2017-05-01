@@ -128,8 +128,7 @@ public class Table {
         ListIterator<Player> itr = players.listIterator(0);
         System.out.println("Table:");
         while(itr.hasNext()){
-            r += itr.next().toString();
-            System.out.println();
+            r += itr.next().toString(false);
         }
         return r;
     }

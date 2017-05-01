@@ -24,7 +24,6 @@ public class Dealer {
         POSTFLOP,
         POSTTURN,
         POSTRIVER,
-        SHOWDOWN
     }
 
     /**
@@ -127,7 +126,63 @@ public class Dealer {
 
             //sort all 7 cards
             Arrays.sort(availableCards, Collections.reverseOrder());
-            availableCards = moveCardGroupsToFront(availableCards);
+            boolean hasPair = false;
+            boolean hasTwoPair = false;
+            boolean hasTrips = false;
+            boolean hasQuads = false;
+            boolean hasFullhouse = false;
+            int[] counts = new int[15];
+            Card[] a = availableCards;
+            for (int j = 0; j < a.length; j++){
+                if(a[j].getRank() == 2){
+                    counts[2]++;
+                } else if(a[j].getRank() == 3){
+                    counts[3]++;
+                }else if(a[j].getRank() == 4){
+                    counts[4]++;
+                }else if(a[j].getRank() == 5){
+                    counts[5]++;
+                }else if(a[j].getRank() == 6){
+                    counts[6]++;
+                }else if(a[j].getRank() == 7){
+                    counts[7]++;
+                }else if(a[j].getRank() == 8){
+                    counts[8]++;
+                }else if(a[j].getRank() == 9){
+                    counts[9]++;
+                }else if(a[j].getRank() == 10){
+                    counts[10]++;
+                }else if(a[j].getRank() == 11){
+                    counts[11]++;
+                }else if(a[j].getRank() == 12){
+                    counts[12]++;
+                }else if(a[j].getRank() == 13){
+                    counts[13]++;
+                }else if(a[j].getRank() == 14){
+                    counts[14]++;
+                }
+            }
+
+            for (int j = 0; j < counts.length; j++){
+                if(counts[j] == 4){
+                    hasQuads = true;
+                } else if(counts[j] == 3){
+                    if(hasPair){
+                        hasFullhouse = true;
+                    } else {
+                        hasTrips = true;
+                    }
+                } else if(counts[j] == 2){
+                    if(hasTrips){
+                        hasFullhouse = true;
+                    } else if(hasPair){
+                        hasTwoPair = true;
+                    } else {
+                        hasPair = true;
+                    }
+                }
+            }
+            //availableCards = moveCardGroupsToFront(availableCards);
             //move pairs to the front
 
 
@@ -137,16 +192,12 @@ public class Dealer {
             }
 
             //check quads
-            else if(availableCards[0].getRank() == availableCards[1].getRank() &&
-                    availableCards[0].getRank() == availableCards[2].getRank() &&
-                    availableCards[0].getRank() == availableCards[3].getRank() ) {
+            else if(hasQuads) {
                 setHand(p, availableCards, Card.HankRank.FOUR_OF_A_KIND);
             }
 
             //check full house
-            else if(availableCards[0] == availableCards[1] &&
-                    availableCards[1] == availableCards[2] &&
-                    availableCards[3] == availableCards[4]){
+            else if(hasFullhouse){
                 setHand(p, availableCards, Card.HankRank.FULL_HOUSE);
             }
             //check flush
@@ -159,17 +210,15 @@ public class Dealer {
             }
 
             //check trips
-            else if(availableCards[0].getRank() == availableCards[1].getRank() &&
-                        availableCards[1].getRank() == availableCards[2].getRank()) {
+            else if(hasTrips) {
                 setHand(p, availableCards, Card.HankRank.THREE_OF_A_KIND);
             }
             //check two pair
-            else if(availableCards[0].getRank() == availableCards[1].getRank() &&
-                       availableCards[2].getRank() == availableCards[3].getRank() ) {
+            else if(hasTwoPair) {
                 setHand(p, availableCards, Card.HankRank.TWO_PAIR);
             }
             //check one pair and high card
-            else if(availableCards[0].getRank() == availableCards[1].getRank()){
+            else if(hasPair){
                 setHand(p, availableCards, Card.HankRank.PAIR);
             } else {
                 setHand(p, availableCards, Card.HankRank.HIGH_CARD);
@@ -271,10 +320,27 @@ public class Dealer {
      * Determine if a set of n cards is a flush
      */
     private boolean hasStraightFlush(Card[] a){
-        if (hasFlush(a) && hasStraight(a)){
-
+        LinkedList<Card> cList = new LinkedList<>(Arrays.asList(a));
+        //remove duplicates
+        for (int i = 0; i < cList.size() - 1;i++) {
+            if (cList.get(i).getRank() - cList.get(i+1).getRank() != 1){
+                cList.remove(i+1);
+                i--;
+            }
         }
-        return false;
+
+        //if not in order
+        if(cList.size() < 5){
+            return false;
+        }
+        for (int i = 0; i < cList.size() - 1; i++) {
+
+            if ((cList.get(i).getRank() - cList.get(i+1).getRank()) > 1 ||
+                    cList.get(i).getSuit() != cList.get(i+1).getSuit()){
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -284,15 +350,14 @@ public class Dealer {
         int clubCount = 0, spadeCount = 0, diamondCount = 0, heartCount = 0;
 
         for (int i = 0; i < a.length;i++){
-            switch (a[i].getSuit()) {
-                case 'd':
-                    diamondCount++;
-                case 'c':
-                    clubCount++;
-                case 's':
-                    spadeCount++;
-                case 'h':
-                    heartCount++;
+            if(a[i].getSuit() == 'd'){
+                diamondCount++;
+            } else if(a[i].getSuit() == 'c'){
+                clubCount++;
+            }else if(a[i].getSuit() == 's'){
+                spadeCount++;
+            }else if(a[i].getSuit() == 'h'){
+                heartCount++;
             }
         }
 
@@ -303,6 +368,26 @@ public class Dealer {
      * Determine if a set of n cards is a flush
      */
     private boolean hasStraight(Card[] a){
-        return false;
+        LinkedList<Card> cList = new LinkedList<>(Arrays.asList(a));
+        //remove duplicates
+        for (int i = 0; i < cList.size() - 1;i++) {
+            if (cList.get(i).getRank() - cList.get(i+1).getRank() != 1){
+                cList.remove(i+1);
+                i--;
+            }
+        }
+
+        //if not in order
+        if(cList.size() < 5){
+            return false;
+        }
+        for (int i = 0; i < cList.size() - 1; i++) {
+
+            if ((cList.get(i).getRank() - cList.get(i+1).getRank()) > 1){
+                return false;
+            }
+        }
+
+        return true;
     }
 }

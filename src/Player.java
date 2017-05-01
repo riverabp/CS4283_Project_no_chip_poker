@@ -81,6 +81,7 @@ public class Player {
         myHandRank = hand;
     }
 
+
     /**
      * @return hole card
      */
@@ -99,6 +100,14 @@ public class Player {
         return myStack;
     }
 
+    public Card.HankRank getHandRank(){
+        return this.myHandRank;
+    }
+
+    public void winChips(int w){
+        myStack += w;
+    }
+
 
     /**
      * print players stack, cards, and name
@@ -111,6 +120,12 @@ public class Player {
                 r += myHoleCards[i].toString() + " ";
             }
             //r += ("\nhand: " + myHandRank + "\n");
+        } else {
+            r += ("\nHand: ");
+            for (int i = 0; i < myHoleCards.length; i++) {
+                r += myHoleCards[i].toString() + " ";
+            }
+            r += ("\nhand: " + myHandRank + "\n");
         }
         return r;
     }

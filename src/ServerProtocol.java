@@ -97,7 +97,7 @@ public class ServerProtocol {
                 "turn in hand, so fold if you think you are going to lose. If you " +
                 "think you may win the hand, you can bet any amount, and the dealer\n" +
                 "will always call you. If the hand goes to showdown, the winner\n" +
-                "takes all. Enter \"post\" to receive your first hand."
+                "takes all. Enter \"post\" to receive your first hand.");
     }
 
     private String printAvailableOptions() {

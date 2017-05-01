@@ -28,6 +28,7 @@ public class ServerProtocol {
             theOutput += hero.toString(true);
         } else if (args[0].equalsIgnoreCase("CHECK")) {
             theOutput += deal();
+            hero.bet(2);
             theOutput += hero.toString(true);
             theOutput += "\nPot: " + table.getPot();
         } else if (args[0].equalsIgnoreCase("BET")) {
@@ -91,13 +92,12 @@ public class ServerProtocol {
                 "*******************************************************************\n\n" +
                 "Welcome to this variant of Texas Hold'em. You will begin with 100\n" +
                 "chips. You are dealt 2 cards, and 5 cards are dealt by the dealer.\n" +
-                "Like Blackjack, you are playing against the dealer. You can always\n" +
-                "check you hand or bet any amount on any betting street, and the\n" +
-                "dealer will always call you. The player with the better hand at\n" +
-                "showdown will win the pot. You must post 2 chips to be dealt a\n" +
-                "hand. You win in the event of a tie. See how high you can grow " +
-                "your stack!\n" +
-                "\nEnter \"post\" to post your 2 chip blind.");
+                "Like Blackjack, you are playing against the dealer. You must post 2\n" +
+                "chips to be dealt a hand. Checking also posts 2 chips before every\n" +
+                "turn in hand, so fold if you think you are going to lose. If you " +
+                "think you may win the hand, you can bet any amount, and the dealer\n" +
+                "will always call you. If the hand goes to showdown, the winner\n" +
+                "takes all. Enter \"post\" to receive your first hand."
     }
 
     private String printAvailableOptions() {
@@ -108,7 +108,7 @@ public class ServerProtocol {
                     "\nAvailable Moves: post exit\n" +
                     "\nEND";
         } else {
-            r += "\nChips: " + hero.getMyStack() + "\nAvailable Moves: check bet <int> exit\n" +
+            r += "\nChips: " + hero.getMyStack() + "\nAvailable Moves: fold check bet <int> exit\n" +
                     "\nEND";
         }
         return r;

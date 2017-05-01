@@ -25,6 +25,7 @@ public class ServerProtocol {
             dealer.preFlop(table);
             if(hero.getMyStack() >= 2) {
                 hero.bet(2);
+                table.setPot(table.getPot() + (2 * 2));
             }
             table.setPot(4);
             theOutput += hero.toString(true);
@@ -32,6 +33,7 @@ public class ServerProtocol {
             theOutput += deal();
             if(hero.getMyStack() >= 2) {
                 hero.bet(2);
+                table.setPot(table.getPot() + (2 * 2));
             }
             theOutput += hero.toString(true);
             theOutput += "\nPot: " + table.getPot();

@@ -63,7 +63,7 @@ public class ServerProtocol {
                 table.setPot(0);
                 r += "Computer Wins\n";
                 r += "Computer Hand: " + villain.getHandRank();
-                r += "Your Hand: " + hero.getHandRank();
+                r += "\nYour Hand: " + hero.getHandRank();
                 dealer.setState(Dealer.STATE.PREDEAL);
             } else {
                 hero.winChips(table.getPot());

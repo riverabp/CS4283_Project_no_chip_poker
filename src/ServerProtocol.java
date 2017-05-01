@@ -96,7 +96,7 @@ public class ServerProtocol {
                 "*   |_|\\___/_/\\_\\__,_|___/ |_| |_|\\___/|_|\\__,_|  \\___|_| |_| |_| *\n" +
                 "*                                                                 *\n" +
                 "*******************************************************************\n\n" +
-                "Welcome to this variant of Texas Hold'em. You will begin with 100\n" +
+                "Welcome to this variant of Texas Hold'em. You will begin with 50\n" +
                 "chips. You are dealt 2 cards, and 5 cards are dealt by the dealer.\n" +
                 "Like Blackjack, you are playing against the dealer. You must post 2\n" +
                 "chips to be dealt a hand. Checking also costs 2 chips, so fold if\n" +

@@ -5,7 +5,7 @@ import java.util.Random;
  */
 public class Player {
 
-    public final int DEFAULT_STACK = 100;
+    public final int DEFAULT_STACK = 50;
     public final int HOLE_CARDS = 2;
     public final int HAND_CARDS = 5;
 

@@ -80,7 +80,7 @@ public class ServerProtocol {
                 table.setPot(0);
                 r += "You Win!!\n";
                 r += "Computer Hand: " + villain.getHandRank();
-                r += "Your Hand: " + hero.getHandRank();
+                r += "\nYour Hand: " + hero.getHandRank();
                 dealer.setState(Dealer.STATE.PREDEAL);
             }
         }
